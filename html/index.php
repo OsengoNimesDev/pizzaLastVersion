@@ -4,19 +4,7 @@
 <head>
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-	<title><?php echo $titre; ?></title>
-</head>
-<body>
-<header>
-       rte.html">Carte</a></li>
-                <li><a href="./index.html">Accueil</a></li>
-            </ul>            
-        </nav>        
-	  <nav class="menus2">
-        	<label class="tel"><a href="tel:+33600000000">✆</a></label>	
-			<ul class="menuDeroulant">
+	<link rel="stylesheet
 				<li class="menuBurger">☰</li>  
 				<li><a href="#">Panier</a></li>
 				<li><a href="./carte.html">Carte</a></li>
