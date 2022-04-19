@@ -18,7 +18,7 @@
 
     
 
-    <?php $page->html(); ?>
+    <?php $page->html(); ?>test
 
     </main>
     <footer>
