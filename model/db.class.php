@@ -8,10 +8,18 @@ class Database extends PDO {
     public function __construct(){
         try {
             parent::__construct("mysql:host=$this->servername;dbname=$this->dbname; charset=utf8", $this->username, $this->password);
+
             // echo ("connexion ok");
+
+            // echo ("connexion test");
+
         }
         catch(Exception $e){
             print_r($e);
         }
     }
+
 } 
+
+}
+
