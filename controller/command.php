@@ -19,9 +19,14 @@ switch($url) {
         $page = new Accueil;
         $titre = "Pizzeria de la plage - Accueil";
     break;
-
+    
+    case "":
+        $page= new Accueil;
+        $titre="Pizzeria de la plage - Binevenue";
+    break;
+    
     default : 
         header('HTTP/1.1 404 Not Found');
         die();
-    break; 
+    break;
 }
