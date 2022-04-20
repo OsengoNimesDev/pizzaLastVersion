@@ -23,5 +23,5 @@ switch($url) {
     default : 
         header('HTTP/1.1 404 Not Found');
         die();
-    break;
+    break; 
 }
