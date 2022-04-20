@@ -23,7 +23,8 @@
 			<ul class="menuDeroulant">
 				<li class="menuBurger">☰</li>  
 				<li><a href="#">Panier</a></li>
-				<li><a href="./carte.html">Carte
+				<li><a href="./carte.html">Carte</a></li>
+				<li><a href="./index.html">Accueil</a></li>
 			</ul> 
 
         </nav>
