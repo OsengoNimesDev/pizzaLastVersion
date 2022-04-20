@@ -14,7 +14,7 @@
             <label class="tel"><a href="tel:+33600000000"> 0600000000</a></label>
             <ul>
                 <li><a href="#">Panier</a></li>
-                <li><a href="./carte.html">Carte</a></li>
+                <li><a href="./c arte.html">Carte</a></li>
                 <li><a href="./index.html">Accueil</a></li>
             </ul>            
         </nav>        
