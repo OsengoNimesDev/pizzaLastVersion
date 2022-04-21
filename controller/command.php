@@ -22,7 +22,7 @@ switch($url) {
     
     case "":
         $page= new Accueil;
-        $titre="Pizzeria de la plage - Binevenue";
+        $titre="Pizzeria de la plage - Bienvenue";
     break;
     
     default : 
