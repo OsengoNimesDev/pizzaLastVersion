@@ -25,7 +25,7 @@
 				<li><a href="#">Panier</a></li>
 				<li><a href="./carte.html">Carte</a></li>
 				<li><a href="./index.html">Accueil</a></li>
-			</ul> 
+			</ul> test
 
         </nav>
 	  <a href="./index.html"><img class="pi zza" src="./img/pizza.png" alt="logo"></a>
