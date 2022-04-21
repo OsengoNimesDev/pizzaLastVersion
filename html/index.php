@@ -20,11 +20,7 @@
         </nav>        
 	  <nav class="menus2">
         	<label class="tel"><a href="tel:+33600000000">✆</a></label>	
-			<ul class="menuDeroulant">
-				<li class="menuBurger">☰</li>  
-				<li><a href="#">Panier</a></li>
-				<li><a href="./carte.html">Carte</a></li>
-				<li><a href="./index.html">Accueil</a></li>
+			<ul class="menuDero
 			</ul> 
 
         </nav>
