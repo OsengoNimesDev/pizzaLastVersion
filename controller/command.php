@@ -22,9 +22,9 @@ switch($url) {
     
     case "":
         $page= new Accueil;
-        $titre="Pizzeria de la plage - Binevenue";
+        $titre="Pizzeria de la plage - Bienvenue";
     break;
-    
+
     default : 
         header('HTTP/1.1 404 Not Found');
         die();
