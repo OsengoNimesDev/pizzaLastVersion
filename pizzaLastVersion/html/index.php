@@ -25,7 +25,7 @@
 				<li><a href="#">Panier</a></li>
 				<li><a href="./carte.html">Carte</a></li>
 				<li><a href="./index.html">Accueil</a></li>
-			</ul> test
+			</ul>
 
         </nav>
 	  <a href="./index.html"><img class="pi zza" src="./img/pizza.png" alt="logo"></a>
@@ -38,4 +38,3 @@
     </footer>
 </body>
 </html>
-//testludovic
