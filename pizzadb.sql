@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : jeu. 21 avr. 2022 à 07:18
+-- Généré le : jeu. 21 avr. 2022 à 09:54
 -- Version du serveur : 5.7.36
 -- Version de PHP : 7.4.26
 
@@ -116,15 +116,15 @@ CREATE TABLE IF NOT EXISTS `pizza` (
 
 INSERT INTO `pizza` (`id`, `nom`, `description`, `prixGrande`, `prixPetite`, `prixPart`) VALUES
 (1, 'Margarita', 'Sauce tomate, fromage, origan', 1350, 900, 450),
-(2, 'Regina', 'Sauce tomate, fromage, jambon blanc, origan', 1400, 1000, 500),
-(3, 'Reine', 'Sauce tomate, fromage, jambon blanc, champignon, origan', 1550, 1100, 600),
-(4, 'Napolitaine', 'Sauce tomate, fromage, anchois, olive, origan', 1350, 1100, 600),
-(6, 'Quatre fromages ', 'Sauce tomate, fromage, chèvre, bleu, mizotte, origan', 1300, 1000, 500),
-(7, 'Savoyarde', 'Base crème, fromage, jambon cru, pomme de terre, reblochon, origan', 1600, 1200, 650),
-(8, 'Pitchouns', 'Sauce tomate, jambon, fromage', 1200, 900, 400),
-(9, 'Hawaïenne', 'Sauce tomate, fromage, poulet au curry, ananas, origan\r\n', 1500, 1150, 700),
-(10, 'Tartiflette', 'Base crème, fromage, pomme de terre, lardons, oignons, reblochon, origan', 1600, 1200, 650),
-(11, 'Pantagruel', 'Base crème, fromage, viande hachée, camembert, origan', 1600, 1250, 650);
+(2, 'Reine', 'Sauce tomate, fromage, jambon blanc, champignon, origan', 1550, 1100, 600),
+(3, 'Napolitaine', 'Sauce tomate, fromage, anchois, olive, origan', 1350, 1100, 600),
+(4, 'Quatre fromages ', 'Sauce tomate, fromage, chèvre, bleu, mizotte, origan', 1300, 1000, 500),
+(5, 'Savoyarde', 'Base crème, fromage, jambon cru, pomme de terre, reblochon, origan', 1600, 1200, 650),
+(6, 'Pitchouns', 'Sauce tomate, jambon, fromage', 1200, 900, 400),
+(7, 'Hawaïenne', 'Sauce tomate, fromage, poulet au curry, ananas, origan\r\n', 1500, 1150, 700),
+(8, 'Tartiflette', 'Base crème, fromage, pomme de terre, lardons, oignons, reblochon, origan', 1600, 1200, 650),
+(9, 'Pantagruel', 'Base crème, fromage, viande hachée, camembert, origan', 1600, 1250, 650),
+(10, 'Pescatore', 'Base tomate, fruits de mer, origan.', 1550, 1100, 550);
 
 -- --------------------------------------------------------
 
