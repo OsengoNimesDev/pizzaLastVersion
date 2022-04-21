@@ -14,4 +14,4 @@ class Database extends PDO {
             print_r($e);
         }
     }
-}
+} 
