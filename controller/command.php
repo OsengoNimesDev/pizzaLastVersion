@@ -12,21 +12,18 @@ switch($url) {
     case "carte.html" :
         $pizzaList = Pizza::list();
         $page = new Carte($pizzaList);
-        $titre = "Pizzeria de la plage - Carte";
         break;
 
     case "index.html" :
-        $page = new Accueil;
-        $titre = "Pizzeria de la plage - Accueil";
+        $page = new Accueil();
     break;
-    
-    case "":
-        $page= new Accueil;
-        $titre="Pizzeria de la plage - Bienvenue";
+
+    case "" :
+        $page = new Accueil();
     break;
-    
+
     default : 
-        header('HTTP/1.1 404 Not Found');
+        header('HTTP/1.1 404 Not Found');// bug sur firefox
         die();
     break;
 }
