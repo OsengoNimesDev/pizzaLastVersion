@@ -48,7 +48,7 @@
         }
 
         public function setPrixPart (int $prixPart) {
-            if($this->prixPart >=-1){
+            if($this->prixPart >-1){
                 $this->prixPart=$prixPart;
                 
             }
