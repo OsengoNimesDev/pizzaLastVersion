@@ -34,7 +34,7 @@ switch($url) {
 }
 
 if (isset($_FILES['photo']['tmp_name'])) {  
-    $taille = getimagesize($_FILES['photo']['tmp_name']); // met la largeur et la longueur dans un array 
+    $taille = getimagesize($_FILES['photo']['tmp_name']); // met la largeur et la longueur dans un array lol
     $largeur = $taille[0];
     $hauteur = $taille[1];
     $extension = exif_imagetype($_FILES['photo']['tmp_name']);
