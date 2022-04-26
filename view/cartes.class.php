@@ -23,24 +23,40 @@
                  if($pizza->getPrixPart() !== -1) {
                     echo
                      '   
-                     <div>La Part = '.number_format($pizza->getPrixPart()/100,2).' € </div><div>
+                     <div>La Part = '.number_format($pizza->getPrixPart()/100,2).'€ </div><div>
                      <input type="number" placeholder="Quantité" min="1" max="8" id="qp1p"/>
                      <button class="btn" title="ajoutez au panier"><i class="fas fa-shopping-basket"></i>
                      </button>
                      </div>
                      ';
                      }
-                     echo
-                     '
 
-                         <div>Moyenne = '.number_format($pizza->getPrixPetite()/100,2).' € </div><div><input type="number" placeholder="Quantité" min="1" max="8" id="qp1m"/><button class="btn" title="ajoutez au panier"><i class="fas fa-shopping-basket"></i></button></div>
-                         <div>Grande = '.number_format($pizza->getPrixGrande()/100,2).' € </div><div><input type="number" placeholder="Quantité" min="1" max="8" id="qp1g"/><button class="btn" title="ajoutez au panier"><i class="fas fa-shopping-basket"></i></button></div>
-                     </div>
-                 </div>
-             </div>
-             ';
+                     if($pizza->getPrixPetite() !==-1){
+
+                     
+                     echo
+                     '   <div>Moyenne = '.number_format($pizza->getPrixPetite()/100,2).'€ </div
+                         ><div><input type="number" placeholder="Quantité" min="1" max="8" id="qp1m"/>
+                         <button class="btn" title="ajoutez au panier"><i class="fas fa-shopping-basket">
+                         </i></button></div>
+                     ';
+                     }
+
+                     if($pizza->getPrixGrande() !==-1){
+
+                        echo'
+                            <div>Grande = '.number_format($pizza->getPrixGrande()/100,2).'€ </div>
+                            <div><input type="number" placeholder="Quantité" min="1" max="8" id="qp1g"/>
+                            <button class="btn" title="ajoutez au panier"><i class="fas fa-shopping-basket">
+                            </i></button></div>
+                        </div>
+                    </div>
+                </div>
+                ';
+                     }
           
-            };
+            }
+
           echo '
           </div>
           ';
