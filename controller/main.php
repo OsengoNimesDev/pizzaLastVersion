@@ -1,2 +1,2 @@
 <?php include "command.php";
-        $page->html();
+        $page->html(); 

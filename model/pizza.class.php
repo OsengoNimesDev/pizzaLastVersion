@@ -56,6 +56,7 @@
                 $sql="INSERT INTO pizza (nom, description, prixGrande, prixPetite, prixPart) VALUES (:nom, :description, :prixGrande, :prixPetite, :prixPart);";
             }
             else {
+                
                 $sql="UPDATE pizza SET nom= :nom, description = :description, prixGrande = :prixGrande, prixPetite = :prixPetite, prixPart = :prixPart WHERE id = :id;";
             }
             $sth =   $this -> prepare($sql); 

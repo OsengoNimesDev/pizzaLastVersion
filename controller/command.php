@@ -16,13 +16,13 @@ switch($url) {
         break;
 
     case "index.html" :
-        $page = new Accueil;
+        $page = new Accueil();
         $titre = "Pizzeria de la plage - Accueil";
     break;
     
     case "":
-        $page= new Accueil;
-        $titre="Pizzeria de la plage - Bienvenue";
+        $page= new Accueil();
+        $titre="Pizzeria de la plage - Accueil";
     break;
 
     default : 
