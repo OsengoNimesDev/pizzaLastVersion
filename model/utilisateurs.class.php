@@ -1,6 +1,6 @@
 <?php
 
-class User extends Database
+class Client extends Database
 {
     private int $ref_cli = 0;
     private string $nom = "";
@@ -98,5 +98,32 @@ class User extends Database
     public function setVip(string $vip)
     {
         $this->vip = $vip;
+    }
+
+    public function saveUser()
+    {
+
+        if ($this->ref_cli == 0) {
+            $sql = "INSERT INTO com_cli (nom, prenom, adresse, pass, email, tel, vip ) VALUES (:nom,:prenom,:adresse, :email, :tel, :pass, :vip)";
+        } else {
+            $sql =
+                $sql = "UPDATE com_cli SET nom= :nom, prenom = :prenom, adresse = :adresse, email = :email, tel = :tel, pass = :pass, vip = :vip WHERE ref_cli = :ref_cli;";
+        }
+        $req = $this->prepare($sql);
+        $req->bindParam(":nom", $this->nom);
+        $req->bindParam(":prenom", $this->prenom);
+        $req->bindParam(":adresse", $this->adresse);
+        $req->bindParam(":email", $this->email);
+        $req->bindParam(":tel", $this->tel);
+        $req->bindParam(":pass", $this->pass);
+        $req->bindParam(":vip", $this->vip);
+        if ($this->ref_cli != 0) {
+            $req->bindParam(":ref_cli", $this->ref_cli);
+        }
+        $req->execute();
+    }
+
+    public function connexion()
+    {
     }
 }

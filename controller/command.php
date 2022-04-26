@@ -19,7 +19,7 @@ switch ($url) {
 
     case "connexion.html":
         $form = new Formulaire();
-        $form->html();
+        $form->htmlConnexion();
         break;
 
     case "index.html":
