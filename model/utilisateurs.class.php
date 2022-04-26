@@ -11,17 +11,17 @@ class Client extends Database
     private string $pass = "";
     private  $vip = null;
 
-    public function __construct($ref_cli, $nom, $prenom, $adresse, $email, $tel, $pass, $vip)
-    {
-        $this->ref_client = $ref_cli;
-        $this->nom = $nom;
-        $this->prenom = $prenom;
-        $this->adresse = $adresse;
-        $this->email = $email;
-        $this->tel = $tel;
-        $this->pass = $pass;
-        $this->vip = $vip;
-    }
+    // public function __construct($ref_cli, $nom, $prenom, $adresse, $email, $tel, $pass, $vip)
+    // {
+    //     $this->ref_client = $ref_cli;
+    //     $this->nom = $nom;
+    //     $this->prenom = $prenom;
+    //     $this->adresse = $adresse;
+    //     $this->email = $email;
+    //     $this->tel = $tel;
+    //     $this->pass = $pass;
+    //     $this->vip = $vip;
+    // }
 
 
     public function getRef_cli(): int
@@ -125,5 +125,25 @@ class Client extends Database
 
     public function connexion()
     {
+        session_start([
+            'cookie_lifetime' => 24400
+        ]);
+        $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+        $pass = filter_input(INPUT_POST, 'password');
+        if (isset($email) && isset($pass)) {
+
+            $sql = "SELECT * FROM com_cli WHERE email = :email";
+            $request = $this->prepare($sql);
+            $request->bindParam(":email", $email);
+            $request->execute();
+            $result = $request->fetchAll(PDO::FETCH_CLASS, 'Client');
+
+            if (sizeof($result) > 0) {
+                // print_r($result[0]);
+                return true;
+            } else return false;
+        } else {
+            return false;
+        }
     }
 }

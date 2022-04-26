@@ -5,7 +5,7 @@ class Database extends PDO
     private $servername = 'localhost';
     private $dbname = 'pizzadb';
     private $username = 'root';
-    private $password = '';
+    private $password = '3u4hEctet0wcp0a';
     public function __construct()
     {
         try {

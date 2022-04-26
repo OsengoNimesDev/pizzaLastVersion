@@ -18,8 +18,19 @@ switch ($url) {
         break;
 
     case "connexion.html":
-        $form = new Formulaire();
-        $form->htmlConnexion();
+        // $form = new Formulaire();
+        // $form->htmlConnexion();
+        $client = new Client();
+        $isConnect = $client->connexion();
+        $page = new Formulaire($isConnect);
+
+
+        break;
+
+    case "formulaire.html":
+        $page = new Formulaire(false);
+
+
         break;
 
     case "index.html":
