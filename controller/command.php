@@ -2,9 +2,11 @@
 
 require '../model/db.class.php';
 require '../model/pizza.class.php';
+require '../model/histcommande.class.php';
 require '../view/index.class.php'; 
 require '../view/cartes.class.php'; 
 require '../view/photo.class.php';
+require '../view/historique.class.php';
 
 
 $url = filter_input(INPUT_GET, "url"); // on récupère ce qu'il y a dans l'url saisie par l'utilisateur
@@ -25,6 +27,12 @@ switch($url) {
     case "photo.html" :
         $page = new Photo;
         $titre = "Pizzeria de la plage - Photo";
+    break;
+
+    case "histcommand.html" :
+        $histList = HistCommande::list();
+        $page = new Historique($histList);
+        $titre = "Pizzeria de la plage - Historique de commande";
     break;
 
     default : 
