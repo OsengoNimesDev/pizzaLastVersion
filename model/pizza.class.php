@@ -64,10 +64,6 @@ class Pizza extends Database
             
         }
 
-    public function setPrixPart(int $prixPart)
-    {
-        $this->prixPart = $prixPart;
-    }
 
 
     public function save()
