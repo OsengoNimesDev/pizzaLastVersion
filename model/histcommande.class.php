@@ -41,5 +41,4 @@
             $list = $sth->fetchAll(PDO::FETCH_CLASS, "HistCommande");
             return $list;
         }
-
     }

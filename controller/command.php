@@ -30,7 +30,7 @@ switch($url) {
     break;
 
     case "histcommand.html" :
-        $histList = HistCommande::list();
+        $histList = Historique::list();
         $page = new Historique($histList);
         $titre = "Pizzeria de la plage - Historique de commande";
     break;
