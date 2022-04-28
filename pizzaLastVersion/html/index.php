@@ -28,7 +28,7 @@
 			</ul>
 
         </nav>
-	  <a href="./index.html"><img class="pi zza" src="./img/pizza.png" alt="logo"></a>
+	  <a href="./index.html"><img class="pizza" src="./img/pizza.png" alt="logo"></a>
     </header>
     <main>
     <?php $page->html(); ?>

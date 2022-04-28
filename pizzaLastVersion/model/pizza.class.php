@@ -7,7 +7,7 @@
         private int $prixPetite=0;
         private int $prixPart=0;
 
-        public function getId() : string {
+        public function getId() : int {
             return $this->id; 
         }
 
@@ -56,7 +56,7 @@
                 $sql="INSERT INTO pizza (nom, description, prixGrande, prixPetite, prixPart) VALUES (:nom, :description, :prixGrande, :prixPetite, :prixPart);";
             }
             else {
-                $sql="UPDATE pizza SET nom= :nom, description = :description, prixGrande = :prixGrande, prixPetite = :prixPetite, prixPart = :prixPart WHERE id = :id;";
+                $sql="UPDATE pizza SET nom = :nom, description = :description, prixGrande = :prixGrande, prixPetite = :prixPetite, prixPart = :prixPart WHERE id = :id;";
             }
             $sth =   $this -> prepare($sql); 
             $sth->bindParam(":nom", $this->nom);
@@ -64,7 +64,7 @@
             $sth->bindParam(":prixGrande",$this->prixGrande);
             $sth->bindParam(":prixPetite",$this->prixPetite);
             $sth->bindParam(":prixPart",$this->prixPart);
-            if ($this->id>0) {
+            if ($this->id > 0) {
                 $sth->bindParam(":id", $this->id);
             }
             $sth->execute(); 
