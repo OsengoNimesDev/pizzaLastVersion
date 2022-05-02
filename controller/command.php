@@ -4,6 +4,7 @@ require '../model/db.class.php';
 require '../model/pizza.class.php';
 require '../view/index.class.php'; 
 require '../view/cartes.class.php'; 
+require '../model/client.class.php'; 
 
 $url = filter_input(INPUT_GET, "url"); // on récupère ce qu'il y a dans l'url saisie par l'utilisateur
 
@@ -15,6 +16,8 @@ switch($url) {
         break;
     case "client.html" :
         $titre = "Pizzeria de la plage - Client";
+        $page = Client::connexion("qsd@gmail.com","azerty");
+        print_r ($page);
         echo $titre;
     break;
     case "index.html" :
