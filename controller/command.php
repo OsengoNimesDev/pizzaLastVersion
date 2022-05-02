@@ -5,7 +5,6 @@ require '../model/pizza.class.php';
 require '../view/index.class.php'; 
 require '../view/cartes.class.php'; 
 
-
 $url = filter_input(INPUT_GET, "url"); // on récupère ce qu'il y a dans l'url saisie par l'utilisateur
 
 switch($url) {
@@ -14,12 +13,14 @@ switch($url) {
         $page = new Carte($pizzaList);
         $titre = "Pizzeria de la plage - Carte";
         break;
-
+    case "client.html" :
+        $titre = "Pizzeria de la plage - Client";
+        echo $titre;
+    break;
     case "index.html" :
         $page = new Accueil();
         $titre = "Pizzeria de la plage - Accueil";
     break;
-    
     case "":
         $page= new Accueil();
         $titre="Pizzeria de la plage - Accueil";

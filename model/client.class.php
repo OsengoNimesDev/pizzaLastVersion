@@ -3,7 +3,7 @@
 <?php
 	class Client { // voir si OK de faire 1 extends de Database
         // Les propriétés
-		private int $id=0;
+		private int $idClient=0;
 		private string $email=""; // DEVRA etre UNIQUE correspond à l'ID lors du login
 		private string $motDePasse=""; // voir https://www.php.net/manual/fr/faq.passwords.php
 		private string $nom="";
@@ -40,7 +40,7 @@
         }
 		
 		// fct constructeur d'1 client
-		function Client($idClient){
+		function Client(int $idClient) {
 			$requete;
 			$resultat;
 			$pdo = connectionBDD();
@@ -50,7 +50,7 @@
 		    //print_r ($resultat);
 		    $pdo = null; // pour deconnecter
 		    if($resultat == true)
-		    {	// voir bindParam pour simplification      
+		    {	// voir bindParam pour simplification et securite      
 		        $this->id = $resultat['id_client'];
 		        $this->email = $resultat['email'];
 		        $this->motDePasse = $resultat['mot_de_passe'];
@@ -69,7 +69,8 @@
 				// crypter mdp voir password_hash()
 				$motDePasseCrypt =  md5("clientLambda".$motDePasse."lambada");
 			    $pdo = connectionBDD();
-			    $requete = $pdo->prepare("INSERT INTO clients VALUES(0, '".$email."', '".$motDePasseCrypt."', '".$nom."', '".$prenom."',  '0')"); 
+				// emailDejaUtilise(); voir si fct emailDejaUtilise est utile
+			    $requete = $pdo->prepare("INSERT INTO clients VALUES(0, '".$email."', '".$motDePasseCrypt."', '".$nom."', '".$prenom."',  '0')"); // voir fct save class pizza
 			    $retour = $requete->execute();
 			   //print_r($requete->errorInfo());    
 			}
@@ -82,38 +83,30 @@
 			    $resultat = $requete->fetch(PDO::FETCH_ASSOC);
 			    //print_r($resultat);
 			    //test si email est déjà pris
-			    if($resultat == true)
-			    	return true;
-			    else
-			    	return false;
+			    // if($resultat == true)
+			    // 	return true;
+			    // else
+			    // 	return false;
+				return $resultat;
 		}
-		public static function connexion($email, $motDePasse, $varSession){					
+		public static function connexion($email, $motDePasse) :Array {					
 			$requete;
 			$resultat;
 			$retour = false;
 			$motDePasseCrypt;
 			
-			$motDePasseCrypt =  md5("clientLambda".$motDePasse."lambada");
+			$motDePasseCrypt = md5("clientLambda".$motDePasse."lambada");
 		    $pdo = connectionBDD();
 		    $requete = $pdo->prepare("SELECT id_client FROM clients WHERE email='".$email."' AND mot_de_passe='".$motDePasseCrypt."'");
 		    $requete->execute();
-		    $resultat = $requete->fetch(PDO::FETCH_ASSOC);
+		    $resultat = $requete->fetchAll(PDO::FETCH_CLASS, "Client");
 		    //Si OK alors Client s'est deja enregistre
-		    if($resultat == true)
-		    {			      
-		        $_SESSION[$varSession] = $resultat['id_client']; //voir variable session https://www.php.net/manual/en/book.session.php
-		        $retour = true; //On retourne true si OK
-		    }
-		    else
-		    {
-		        $retour = false;
-		    }
-		    $pdo = null;
-		    return $retour;
+		    $pdo = null; // a voir sur php.net
+		    return $resultat;
 		} 
-		//  on vire variables de sessions utilisé par la classe
+		//  on vire variables de session utilisé par la classe
 		public static function deconnexion($varSession){			
-			unset($_SESSION[$varSession]);
+			unset($_SESSION[$varSession]); // voir comment virer ttes les vars de session
 			if(isset($_SESSION[$varSession]))
 				return false;
 			else
