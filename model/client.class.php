@@ -33,10 +33,7 @@
             $this->prenom = $newPrenom;
         }
         public function setMotDePasse($newPassword){
-            if($newPassword != "")
-                $this->motDePasse = md5("clientLambda".$newPassword."lambada");
-                // methode depassé. voir plutot password_hash()
-                // https://www.php.net/manual/fr/faq.passwords.php
+            $this->motDePasse = password_hash($newPassword);
         }
 		
 		public static function connexion($email, $motDePasse) : Array {					
@@ -58,12 +55,34 @@
 				}
 			}
 			return [];
-		} 
-		private function verifMotDePasse (string $motDePasse){
-			return true;
+		}
+
+		public function majModification($email, $motDePasse) : Array {					
+			$requete;
+			$resultat;
+		    $requete = $this->prepare("SELECT * FROM compteClient WHERE email= :email");
+			$requete->bindParam(":email", $email);
+		    $requete->execute();
+		    $resultat = $requete->fetchAll(PDO::FETCH_CLASS, "Client");
+			$mdp = password_hash($motDePasse);
+			$requete->bindParam(":nom", $nom);
+			$requete->bindParam(":prenom", $prenom);
+			$requete->bindParam(":motDePasse", $mdp);
+		    if (sizeof($resultat)>0) 
+			{
+				$requete = $this->prepare("UPDATE compteClient SET nom=:nom, prenom=:prenom, motDePasse=:motDePasse");
+			}
+			else {
+				$requete = $this->prepare("INSERT INTO compteClient (nom, prenom, motDePasse) VALUES (:nom, :prenom, :motDePasse)");
+			}
+			return [];
 		}
 
 
+		private function verifMotDePasse (string $motDePasse){
+			return password_verify($motDePasse, $this->motDePasse);
+		}
+	}
 		//  on vire variables de session utilisé par la classe
 		// public static function deconnexion($varSession){			
 		// 	unset($_SESSION[$varSession]); // voir comment virer ttes les vars de session
@@ -72,5 +91,5 @@
 		// 	else
 		// 		return true;
 		// }
-	}
+}
 ?>
