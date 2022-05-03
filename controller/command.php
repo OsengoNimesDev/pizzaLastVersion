@@ -117,8 +117,6 @@ switch($url) {
         $titre = "Pizzeria de la plage - Historique de commande";
     break;
 
-    default : 
-        header('HTTP/1.1 404 Not Found');
-        die();
+ 
     break;
 }
