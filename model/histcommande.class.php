@@ -35,7 +35,7 @@
  
         public static function list() : Array {
             $dbh = new Database();
-            $sql = "SELECT num_com, dateCom, montant, moy_pai, nom, prenom FROM commandespaiements INNER JOIN com_cli on com_cli.ref_cli = commandespaiements.ref_cli WHERE commandespaiements.ref_cli = 1 ORDER BY dateCom desc";
+            $sql = "SELECT num_com, dateCom, montant, moy_pai, nom, prenom FROM commandespaiements INNER JOIN com_cli on com_cli.ref_cli = commandespaiements.ref_cli WHERE commandespaiements.ref_cli = $_SESSION[ref_cli] ORDER BY dateCom desc";
             $sth = $dbh->prepare($sql);
             $sth->execute();
             $list = $sth->fetchAll(PDO::FETCH_CLASS, "HistCommande");
