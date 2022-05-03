@@ -5,16 +5,14 @@ class Formulaire
 
     private bool $isConnect;
 
-    public function __construct($isConnect)
-    {
-        $this->isConnect = $isConnect;
-    }
+   
     public function html()
     {
+        if (isset($_SESSION['id'])){
 
-        if ($this->isConnect) {
-            // echo 'Vous etes connecté';
             header('Location: /index.html');
+            // echo 'Vous etes connecté';
+
         } else {
             echo
             '
@@ -31,3 +29,4 @@ class Formulaire
         '; 
         }
     }
+}

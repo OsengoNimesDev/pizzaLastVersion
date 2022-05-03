@@ -1,4 +1,7 @@
 <?php
+session_start();
+print_r ($_SESSION);
+// $_SESSION['prenom'] = 'Pierre';
 
 require '../model/db.class.php';
 require '../model/pizza.class.php';
@@ -18,17 +21,17 @@ switch ($url) {
         break;
 
     case "connexion.html":
-        $form = new Formulaire();
-        $form->htmlConnexion();
+        $client= new Client();
+        $page = new Formulaire();
         break;
 
     case "index.html":
-        $page = new Accueil;
+        $page = new Accueil();
         $titre = "Pizzeria de la plage - Accueil";
         break;
 
     case "":
-        $page = new Accueil;
+        $page = new Accueil();
         $titre = "Pizzeria de la plage - Bienvenue";
         break;
 
