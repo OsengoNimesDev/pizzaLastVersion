@@ -1,12 +1,15 @@
 <?php
+session_start();
 
 require '../model/db.class.php';
 require '../model/pizza.class.php';
 require '../model/histcommande.class.php';
+require '../model/client.class.php';
 require '../view/index.class.php'; 
 require '../view/cartes.class.php'; 
 require '../view/photo.class.php';
 require '../view/historique.class.php';
+require '../view/formulaire.class.php';
 
 
 $url = filter_input(INPUT_GET, "url"); // on récupère ce qu'il y a dans l'url saisie par l'utilisateur
@@ -24,6 +27,29 @@ switch($url) {
         $titre = "Pizzeria de la plage - Carte";
     break;
 
+    case "connexion.html": 
+        $page = new Formulaire();
+        break;
+        
+    case "validationConnexion.html":
+        $email=filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+        $password=filter_input(INPUT_POST, 'password');
+        $client = Client::connexion($email,$password);
+        // var_dump($client);
+        if( $client){
+                $ref_cli= $client->getID();
+                $_SESSION["ref_cli"]=$ref_cli;
+                header('Location: /index.html');
+            //echo "on a trouvé";
+        }else{
+            unset($_SESSION);
+            header('Location: /connexion.html');
+            // echo "ça n'existe pas ";
+        }
+
+        die();
+        break;
+
     case "photo.html" :
         $page = new Photo;
         $titre = "Pizzeria de la plage - Photo";
@@ -40,18 +66,3 @@ switch($url) {
         die();
     break;
 }
-
-if (isset($_FILES['photo']['tmp_name'])) {  
-    $taille = getimagesize($_FILES['photo']['tmp_name']); // met la largeur et la longueur dans un array lol
-    $largeur = $taille[0];
-    $hauteur = $taille[1];
-    $extension = exif_imagetype($_FILES['photo']['tmp_name']);
-    $largeur_miniature = 300;
-    $hauteur_miniature = $hauteur / $largeur * $largeur_miniature; // Une petite règle de trois pour retailler la largeur de l'image à 300 pixels avec une hauteur proportionnelle
-    $im = imagecreatefromjpeg($_FILES['photo']['tmp_name']); // Stocke toute la photo dans la variable $im
-    $im_miniature = imagecreatetruecolor($largeur_miniature, $hauteur_miniature); // Prépare une image tampon noire en 24 bits d'une largeur de 300 pixels avec une hauteur proportionnelle à la photo d'origine.
-    imagecopyresampled($im_miniature, $im, 0, 0, 0, 0, $largeur_miniature, $hauteur_miniature, $largeur, $hauteur);
-    imagejpeg($im_miniature, './img/upload/miniatures/'.$_FILES['photo']['name'], 90);
-    echo $extension;
-}
-?>

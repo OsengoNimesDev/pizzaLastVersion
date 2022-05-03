@@ -1,4 +1,5 @@
 <?php
+//class de test
    class Photo {
       public function html() {
        echo ' 
