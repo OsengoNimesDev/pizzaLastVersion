@@ -36,25 +36,14 @@
             $this->motDePasse = password_hash($newPassword);
         }
 		
-		public static function connexion($email, $motDePasse) : Array {					
-			$requete;
-			$resultat;
-			$retour = false;
-			$motDePasseCrypt;
+		public static function connexion($email, $motDePasse) {					
 			$pdo = new Database();
 		    $requete = $pdo->prepare("SELECT * FROM compteClient WHERE email= :email");
 			$requete->bindParam(":email", $email);
 		    $requete->execute();
-		    $resultat = $requete->fetchAll(PDO::FETCH_CLASS, "Client");
-		    //Si OK alors Client s'est deja enregistre
-		    if (sizeof($resultat)>0) 
-			{
-				$client=$resultat[0];
-				if ($client->verifMotDePasse($motDePasse)){
-					return $resultat;
-				}
-			}
-			return [];
+		    // $resultat = $requete->fetchAll(PDO::FETCH_CLASS, "Client");
+		    // $resultat = $requete->fetchObject("Client");
+			return $requete->fetchObject("Client");
 		}
 
 		public function majModification($email, $motDePasse) : Array {					
@@ -77,19 +66,8 @@
 			}
 			return [];
 		}
-
-
 		private function verifMotDePasse (string $motDePasse){
 			return password_verify($motDePasse, $this->motDePasse);
 		}
 	}
-		//  on vire variables de session utilisé par la classe
-		// public static function deconnexion($varSession){			
-		// 	unset($_SESSION[$varSession]); // voir comment virer ttes les vars de session
-		// 	if(isset($_SESSION[$varSession]))
-		// 		return false;
-		// 	else
-		// 		return true;
-		// }
-}
 ?>
