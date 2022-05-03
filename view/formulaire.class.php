@@ -18,7 +18,7 @@ class Formulaire
             '
         <h1>Formulaire de connexion</h1>
         <div class="formulaire">
-        <form action="connexion.html" method="POST">
+        <form action="validationConnexion.html" method="POST">
             <label for="email"> Email : </label>
             <input type="email" name="email" placeholder="Entrez votre email" /><br>
             <label for="password">Mot de Passe :</label>
