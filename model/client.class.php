@@ -73,4 +73,3 @@
 			return password_verify($motDePasse, $this->motDePasse);
 		}
 	}
-?>

@@ -1,7 +1,6 @@
 <?php
 // En cours de développement 
-class Formulaire
-{
+class Formulaire {
 
     private bool $isConnect;
 
@@ -35,7 +34,6 @@ class Formulaire
         <form action="validationConnexion.html" method="POST">
             <label for="email"> Email : </label>
             <input type="email" name="email" placeholder="Entrez votre email" /><br>
-
             <label for="password">Mot de Passe :</label>
             <input type="password" name="password" /><br>
             <input id="submit" type="submit" value="Login">
@@ -46,11 +44,8 @@ class Formulaire
         }
 
             <input id="submit" type="submit" value="Login">
-
         </form></div>
-        
         '; 
-        }
     }
 
     public function htmlInscription()
