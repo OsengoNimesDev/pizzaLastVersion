@@ -62,16 +62,17 @@ switch($url) {
         $adresse=filter_input(INPUT_POST, 'adresse');
         $telephone=filter_input(INPUT_POST, 'telephone');
         $password=filter_input(INPUT_POST, 'password');
-        $client = Client::inscription($email, $password, $nom, $prenom, $adresse, $telephone);
+        $id = Client::inscription($email, $password, $nom, $prenom, $adresse, $telephone);
         // var_dump($client);
-        if( $client){
-                $ref_cli= $client->getID();
-                $_SESSION["ref_cli"]=$ref_cli;
-                header('Location: /index.html');
+        if($id){
+            unset($_SESSION["error"]);
+            $_SESSION["ref_cli"]=$id;
+            header('Location: /index.html');
             //echo "on a trouvé";
         }else{
-            unset($_SESSION);
-            header('Location: /connexion.html');
+            unset($_SESSION["ref_cli"]);
+            $_SESSION["error"] = "l'adresse email saisie est déjà utilisée";
+            header('Location: /inscription.html');
             // echo "ça n'existe pas ";
         }
         break;
