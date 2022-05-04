@@ -17,7 +17,7 @@ require '../view/formulaire.class.php';
 $url = filter_input(INPUT_GET, "url"); // on récupère ce qu'il y a dans l'url saisie par l'utilisateur
 
 switch($url) {
-    case "index.html" :
+  
     case "" :
         $page = new Accueil;
         $titre = "Pizzeria de la plage - Accueil";
@@ -29,9 +29,7 @@ switch($url) {
         $titre = "Pizzeria de la plage - Carte";
     break;
 
-    case "connexion.html": 
-        $page = new Formulaire();
-        break;
+    
         
     case "validationConnexion.html":
         $email=filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
