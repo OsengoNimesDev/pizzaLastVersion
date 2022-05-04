@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mer. 27 avr. 2022 à 09:16
+-- Généré le : mer. 04 mai 2022 à 14:33
 -- Version du serveur : 5.7.36
--- Version de PHP : 7.4.26
+-- Version de PHP : 8.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -37,7 +37,15 @@ CREATE TABLE IF NOT EXISTS `commandespaiements` (
   `ref_cli` int(11) NOT NULL,
   PRIMARY KEY (`num_com`),
   KEY `ref_cli` (`ref_cli`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `commandespaiements`
+--
+
+INSERT INTO `commandespaiements` (`num_com`, `dateCom`, `date_trans`, `montant`, `moy_pai`, `ref_cli`) VALUES
+(1, '2022-04-25', '2022-04-25', 3000, 'CB', 1),
+(2, '2022-04-26', '2022-04-26', 2790, 'Espèces', 1);
 
 -- --------------------------------------------------------
 
@@ -52,13 +60,20 @@ CREATE TABLE IF NOT EXISTS `com_cli` (
   `prenom` varchar(50) DEFAULT NULL,
   `adresse` varchar(50) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
-  `pass` varchar(50) NOT NULL,
+  `password` varchar(128) NOT NULL,
   `tel` varchar(50) DEFAULT NULL,
-  `vip` int(11) DEFAULT NULL,
   PRIMARY KEY (`ref_cli`),
-  UNIQUE KEY `email` (`email`),
-  UNIQUE KEY `nom` (`nom`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `com_cli`
+--
+
+INSERT INTO `com_cli` (`ref_cli`, `nom`, `prenom`, `adresse`, `email`, `password`, `tel`) VALUES
+(1, 'Martin', 'Jean', '10 rue du panier, 75000 PARIS', 'j.martin@gmail.com', '', '0606060606'),
+(6, 'Test', 'Test', 'Test', 'Test@gmail.com', '$2y$10$aOvDZ44JEkhe4w49udfFv.pPYdXbXruN7ltiNFKrS2/wFs1dGr/7K', '0606060606'),
+(22, 'sqdqsd', 'sdqs', 'sdqdqs', 'Test25@gmail.com', '$2y$10$nfUlZ6tXopINK3OQdC70Ae6O/zYL2CZRg/lLpVmhwYltgs9oIWiXS', '0606060606');
 
 -- --------------------------------------------------------
 
@@ -118,15 +133,21 @@ CREATE TABLE IF NOT EXISTS `pizza` (
   `prixPart` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `nom` (`nom`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `pizza`
 --
 
 INSERT INTO `pizza` (`id`, `nom`, `description`, `prixGrande`, `prixPetite`, `prixPart`) VALUES
-(1, 'Calzone', 'uiiuyuryu(e', 5, 10, 15),
-(2, '3Fromage', 'zezezfz\"gr', 5, -1, 15);
+(1, 'L\'orientale', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus doloribus, ea veniam velit sed harum qui perferendis debitis cumque obcaecati.', 1500, 1000, 500),
+(2, 'La saumon', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 1500, 1000, 500),
+(17, 'La savoyarde', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus doloribus, ea veniam velit sed harum qui perferendis debitis cumque obcaecati.', 1500, 1000, 500),
+(61, 'La campagnarde', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus doloribus, ea veniam velit sed harum qui perferendis debitis cumque obcaecati.', 1500, 1000, 500),
+(62, 'La grecque', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus doloribus, ea veniam velit sed harum qui perferendis debitis cumque obcaecati.', 1500, 1000, 500),
+(63, 'La fruits de mers', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus doloribus, ea veniam velit sed harum qui perferendis debitis cumque obcaecati.', 1500, 1000, 500),
+(64, 'L\'authentique', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus doloribus, ea veniam velit sed harum qui perferendis debitis cumque obcaecati.', 1500, 1000, 500),
+(65, 'La deluxe', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus doloribus, ea veniam velit sed harum qui perferendis debitis cumque obcaecati.', 1500, 1000, 500);
 
 -- --------------------------------------------------------
 
