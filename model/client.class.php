@@ -43,9 +43,15 @@
 		    $requete = $pdo->prepare("SELECT * FROM com_cli WHERE email= :email");
 			$requete->bindParam(":email", $email);
 		    $requete->execute();
+			$client = $requete->fetchObject("Client");
+			if ($client) {
+				if (!$client->verifMotDePasse($motDePasse)) {
+					return false;
+				}
+			}
 		    // $resultat = $requete->fetchAll(PDO::FETCH_CLASS, "Client");
 		    // $resultat = $requete->fetchObject("Client");
-			return $requete->fetchObject("Client");
+			return $client;
 		}
 
 		public static function inscription($email, $motDePasse, $nom, $prenom, $adresse, $tel) {
@@ -90,6 +96,6 @@
 			return [];
 		}
 		private function verifMotDePasse (string $motDePasse){
-			return password_verify($motDePasse, $this->motDePasse);
+			return password_verify($motDePasse, $this->password);
 		}
 	}
