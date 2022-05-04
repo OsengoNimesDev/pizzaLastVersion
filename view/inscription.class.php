@@ -4,6 +4,13 @@ class Inscription {
     
     public function html()
     {
+        $error = "";
+        if (isset ($_SESSION["error"])) {
+                $error = "<span class='msgerror'>";
+                $error .= $_SESSION["error"];
+                $error .= "</span><br>";
+            }
+        
         echo
         "
         <h1>Formulaire d'inscription</h1>
@@ -12,6 +19,7 @@ class Inscription {
 
             <label for='mail'>Email : </label>
             <input type='email' name='email' placeholder='Entrez votre email' /><br>
+            $error
 
             <label for='nom'>Nom : </label>
             <input type='text' name='nom' placeholder='Entrez votre nom' /><br>
@@ -34,7 +42,8 @@ class Inscription {
             <input type='submit' value=\"S'inscrire\">
 
         </form>
+        
         </div>
-        ";
+        "; 
     }
 }

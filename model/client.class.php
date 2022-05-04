@@ -10,7 +10,6 @@
 		private string $prenom="";
         private string $adresse="";
         private string $tel="";
-        private string $vip="";
         
 		// Les méthodes
         public function getID(){
@@ -59,9 +58,12 @@
 			$requete->bindParam(":password", $password);
 			$requete->bindParam(":tel", $tel);
 			$requete->bindParam(":email", $email);
-		    $requete->execute();
-			print_r ($requete);
-			die();
+			try {
+				$requete->execute();
+				return $pdo->lastInsertId();
+			} catch (Exception $e) {
+				return false;
+			}
 		    // $resultat = $requete->fetchAll(PDO::FETCH_CLASS, "Client");
 		    // $resultat = $requete->fetchObject("Client");
 			// return $requete->fetchObject("Client");
