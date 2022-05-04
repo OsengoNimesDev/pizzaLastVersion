@@ -49,6 +49,24 @@
 			return $requete->fetchObject("Client");
 		}
 
+		public static function inscription($email, $motDePasse, $nom, $prenom, $adresse, $tel) {
+			$password = password_hash($motDePasse, PASSWORD_DEFAULT);					
+			$pdo = new Database();
+		    $requete = $pdo->prepare("INSERT INTO com_cli (nom, prenom, adresse, email, password, tel) VALUES (:nom, :prenom, :adresse, :email, :password, :tel)");
+			$requete->bindParam(":nom", $nom);
+			$requete->bindParam(":prenom", $prenom);
+			$requete->bindParam(":adresse", $adresse);
+			$requete->bindParam(":password", $password);
+			$requete->bindParam(":tel", $tel);
+			$requete->bindParam(":email", $email);
+		    $requete->execute();
+			print_r ($requete);
+			die();
+		    // $resultat = $requete->fetchAll(PDO::FETCH_CLASS, "Client");
+		    // $resultat = $requete->fetchObject("Client");
+			// return $requete->fetchObject("Client");
+		}
+
 		public function majModification($email, $motDePasse) : Array {					
 			$requete;
 			$resultat;
