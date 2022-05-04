@@ -29,6 +29,7 @@ switch($url) {
 
     case "connexion.html": 
         $page = new Formulaire();
+        $titre = "Pizzeria de la plage - Formulaire de connexion";
         break;
         
     case "validationConnexion.html":
@@ -46,14 +47,12 @@ switch($url) {
             header('Location: /connexion.html');
             // echo "ça n'existe pas ";
         }
-
-        die();
         break;
 
-    case "photo.html" :
-        $page = new Photo;
-        $titre = "Pizzeria de la plage - Photo";
-    break;
+    // case "photo.html" :
+    //     $page = new Photo;
+    //     $titre = "Pizzeria de la plage - Photo";
+    // break;
 
     case "histcommand.html" :
         $histList = Historique::list();
