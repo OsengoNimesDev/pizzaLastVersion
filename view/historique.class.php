@@ -7,7 +7,7 @@
 
       public function html() {
          echo '<div class="histCommand">';
-      echo ' <h1>Historique des commandes de '.$this->liste[0]->getPrenom().' '.$this->liste[0]->getNom().'</h1>
+      echo ' <h1>Historique des commandes de '.$_SESSION["nom"].'</h1>
             <div>
                <div>Numéro de commande</div>
                <div>Date de la commande</div>
