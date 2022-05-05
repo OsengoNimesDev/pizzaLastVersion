@@ -13,8 +13,12 @@ class Formulaire {
             <input type="email" name="email" placeholder="Entrez votre email" /><br>
             <label for="password">Mot de Passe :</label>
             <input type="password" name="password" /><br>
-            <input id="submit" type="submit" value="Login">
-        </form></div>
-        '; 
+
+            <input type="submit" value="Login">
+
+        </form>
+        ';
+        }
     }
-}
+
+
