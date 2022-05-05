@@ -37,7 +37,7 @@ class Inscription {
             <input type='password' name='password' placeholder='Entrez votre mot de passe' /><br>
 
             <label for='password'>Mot de Passe : </label>
-            <input type='password' name='password' placeholder='Confirmez votre mot de passe' /><br>
+            <input type='password' name='repassword' placeholder='Confirmez votre mot de passe' /><br>
 
             <input type='submit' value=\"S'inscrire\">
 
