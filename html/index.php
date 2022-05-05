@@ -17,6 +17,7 @@
                 <li><a href="#">Panier</a></li>
                 <li><a href="./carte.html">Carte</a></li>
                 <li><a href="./index.html">Accueil</a></li>
+                <li><a href="./connexion.html">Connexion</a></li>
             </ul>            
         </nav>        
 	  <nav class="menus2">
@@ -26,6 +27,7 @@
 				<li><a href="#">Panier</a></li>
 				<li><a href="./carte.html">Carte</a></li>
 				<li><a href="./index.html">Accueil</a></li>
+                <li><a href="./connexion.html">Connexion</a></li>
 			</ul> 
 
         </nav>
