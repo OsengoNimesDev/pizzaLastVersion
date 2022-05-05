@@ -44,7 +44,7 @@ switch($url) {
                 header('Location: /index.html');
             //echo "on a trouvé";
         }else{
-            unset($_SESSION);
+            unset($_SESSION["ref_cli"]);
             header('Location: /connexion.html');
             // echo "ça n'existe pas ";
         }
