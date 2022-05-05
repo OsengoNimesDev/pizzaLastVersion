@@ -2,9 +2,9 @@
 
 class Database extends PDO {
     private $servername = 'localhost';
-    private $dbname = 'pizzas';
-    private $username = 'kedus';
-    private $password = 'mV4c$!PU3uH@&ERx';
+    private $dbname = 'pizzadb';
+    private $username = 'root';
+    private $password = '';
     public function __construct(){
         try {
             parent::__construct("mysql:host=$this->servername;dbname=$this->dbname; charset=utf8", $this->username, $this->password);
