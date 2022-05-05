@@ -10,7 +10,6 @@
 		private string $prenom="";
         private string $adresse="";
         private string $tel="";
-        private string $vip="";
         
 		// Les méthodes
         public function getID(){
@@ -44,9 +43,36 @@
 		    $requete = $pdo->prepare("SELECT * FROM com_cli WHERE email= :email");
 			$requete->bindParam(":email", $email);
 		    $requete->execute();
+			$client = $requete->fetchObject("Client");
+			if ($client) {
+				if (!$client->verifMotDePasse($motDePasse)) {
+					return false;
+				}
+			}
 		    // $resultat = $requete->fetchAll(PDO::FETCH_CLASS, "Client");
 		    // $resultat = $requete->fetchObject("Client");
-			return $requete->fetchObject("Client");
+			return $client;
+		}
+
+		public static function inscription($email, $motDePasse, $nom, $prenom, $adresse, $tel) {
+			$password = password_hash($motDePasse, PASSWORD_DEFAULT);					
+			$pdo = new Database();
+		    $requete = $pdo->prepare("INSERT INTO com_cli (nom, prenom, adresse, email, password, tel) VALUES (:nom, :prenom, :adresse, :email, :password, :tel)");
+			$requete->bindParam(":nom", $nom);
+			$requete->bindParam(":prenom", $prenom);
+			$requete->bindParam(":adresse", $adresse);
+			$requete->bindParam(":password", $password);
+			$requete->bindParam(":tel", $tel);
+			$requete->bindParam(":email", $email);
+			try {
+				$requete->execute();
+				return $pdo->lastInsertId();
+			} catch (Exception $e) {
+				return false;
+			}
+		    // $resultat = $requete->fetchAll(PDO::FETCH_CLASS, "Client");
+		    // $resultat = $requete->fetchObject("Client");
+			// return $requete->fetchObject("Client");
 		}
 
 		public function majModification($email, $motDePasse) : Array {					
@@ -70,6 +96,6 @@
 			return [];
 		}
 		private function verifMotDePasse (string $motDePasse){
-			return password_verify($motDePasse, $this->motDePasse);
+			return password_verify($motDePasse, $this->password);
 		}
 	}
