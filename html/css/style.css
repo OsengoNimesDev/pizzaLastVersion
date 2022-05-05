@@ -195,14 +195,13 @@ ul{
 .formulaire {
   font-size: 2rem;
   border-radius: 2rem;
-  border: solid #000 0.5rem;
+  border: solid rgb(0, 128, 0) 0.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
   line-height: 4rem;
   background-color: rgba(255, 255, 255, 0.795);
   width: 50vw;
-  height: 30vh;
   margin: 0 auto;
   padding: 0.5rem;
 }
