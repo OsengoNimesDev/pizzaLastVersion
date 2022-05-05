@@ -40,6 +40,7 @@ class Inscription {
             <input type='password' name='repassword' placeholder='Confirmez votre mot de passe' /><br>
 
             <input type='submit' value=\"S'inscrire\">
+            <a href='http:connexion.html' > connexion </a>
 
         </form>
         
