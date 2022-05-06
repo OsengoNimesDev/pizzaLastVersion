@@ -44,10 +44,10 @@ switch($url) {
         $password=filter_input(INPUT_POST, 'password');
         $client = Client::connexion($email,$password);
         // var_dump($client);
-        if( $client){
-                $ref_cli= $client->getID();
-                $nom = $client->getNom();
-                $prenom = $client->getPrenom();
+        if($client){
+                $ref_cli=$client->getID();
+                $nom=$client->getNom();
+                $prenom=$client->getPrenom();
                 $_SESSION["ref_cli"]=$ref_cli;
                 $_SESSION["nom"]=$nom;
                 $_SESSION["prenom"]=$prenom;
