@@ -7,7 +7,7 @@
 
       public function html() {
 
-
+         
          echo '<div class="histCommand">';
       echo ' <h1>Historique des commandes de '.$_SESSION["prenom"]." ".$_SESSION["nom"].'</h1>
             <div>
