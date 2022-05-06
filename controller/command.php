@@ -40,7 +40,11 @@ switch($url) {
         // var_dump($client);
         if( $client){
                 $ref_cli= $client->getID();
+                $nom = $client->getNom();
+                $prenom = $client->getPrenom();
                 $_SESSION["ref_cli"]=$ref_cli;
+                $_SESSION["nom"]=$nom;
+                $_SESSION["prenom"]=$prenom;
                 header('Location: /index.html');
             //echo "on a trouvé";
         }else{
