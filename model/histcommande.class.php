@@ -4,8 +4,6 @@
         private string $dateCom="";
         private int $montant=0;
         private string $moy_pai="";
-        private string $nom="";
-        private string $prenom="";
 
         public function getNum_Com() : int {
             return $this->num_com; 
@@ -24,18 +22,10 @@
         public function getMoy_pai() : string {
             return $this->moy_pai; 
         }
-
-        public function getNom() : string {
-            return $this->nom; 
-        }
-
-        public function getPrenom() : string {
-            return $this->prenom; 
-        }
  
         public static function list() : Array {
             $dbh = new Database();
-            $sql = "SELECT num_com, dateCom, montant, moy_pai, nom, prenom FROM commandespaiements INNER JOIN com_cli on com_cli.ref_cli = commandespaiements.ref_cli WHERE commandespaiements.ref_cli = $_SESSION[ref_cli] ORDER BY dateCom desc";
+            $sql = "SELECT num_com, dateCom, montant, moy_pai FROM commandespaiements INNER JOIN com_cli on com_cli.ref_cli = commandespaiements.ref_cli WHERE commandespaiements.ref_cli = $_SESSION[ref_cli] ORDER BY dateCom desc";
             $sth = $dbh->prepare($sql);
             $sth->execute();
             $list = $sth->fetchAll(PDO::FETCH_CLASS, "HistCommande");

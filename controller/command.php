@@ -38,10 +38,10 @@ switch($url) {
         $password=filter_input(INPUT_POST, 'password');
         $client = Client::connexion($email,$password);
         // var_dump($client);
-        if( $client){
-                $ref_cli= $client->getID();
-                $nom = $client->getNom();
-                $prenom = $client->getPrenom();
+        if($client){
+                $ref_cli=$client->getID();
+                $nom=$client->getNom();
+                $prenom=$client->getPrenom();
                 $_SESSION["ref_cli"]=$ref_cli;
                 $_SESSION["nom"]=$nom;
                 $_SESSION["prenom"]=$prenom;
@@ -89,9 +89,12 @@ switch($url) {
         break;
 
     case "histcommand.html" :
+        if ($_SESSION) {
         $histList = Historique::list();
         $page = new Historique($histList);
         $titre = "Pizzeria de la plage - Historique de commande";
+        }
+        else {header('Location: /index.html'); }
     break;
 
     // case "photo.html" :
