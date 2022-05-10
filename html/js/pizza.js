@@ -14,7 +14,7 @@ for (let variable in tab) {
 
   
 $.ajax({
-    url: 'commande.class.php',
+    url: 'commande.html',
     dataType: 'json',
     type: 'post',
     data: tab,

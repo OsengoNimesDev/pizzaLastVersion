@@ -19,7 +19,7 @@
         <nav class="menus1">		
             <label class="tel"><a href="tel:+33600000000"> 0600000000</a></label>
             <ul>
-                <li><a href="#">Panier</a></li>
+                <li><a href="./panier.html">Panier</a></li>
                 <li><a href="./carte.html">Carte</a></li>
                 <li><a href="./index.html">Accueil</a></li>
                 <li><a href="./connexion.html">Connexion</a></li>
@@ -29,7 +29,7 @@
         	<label class="tel"><a href="tel:+33600000000">✆</a></label>	
 			<ul class="menuDeroulant">
 				<li class="menuBurger">☰</li>  
-				<li><a href="#">Panier</a></li>
+				<li><a href="./panier.html">Panier</a></li>
 				<li><a href="./carte.html">Carte</a></li>
 				<li><a href="./index.html">Accueil</a></li>
                 <li><a href="./connexion.html">Connexion</a></li>

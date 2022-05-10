@@ -11,9 +11,13 @@ require '../view/photo.class.php';
 require '../view/historique.class.php';
 require '../view/formulaire.class.php';
 require '../view/inscription.class.php';
+require '../view/panier.class.php';
+require '../view/commande.class.php';
+
 
 
 $url = filter_input(INPUT_GET, "url"); // on récupère ce qu'il y a dans l'url saisie par l'utilisateur
+
 
 switch($url) {
     case "index.html" :
@@ -101,9 +105,18 @@ switch($url) {
     //     $page = new Photo;
     //     $titre = "Pizzeria de la plage - Photo";
     // break;
-case "commande.class.php":
-    print_r($_POST);
+case "commande.html":
+    // print_r($_POST);
+    echo ("je suis là");
+    foreach ($_POST as $key => $value) {
+        $_SESSION[$key] = intval($value);
+    }
+    $page = new Commande();
+    print_r($_SESSION);
     break;
+    case "panier.html":
+        $page= new Panier();
+        break;
 
     default : 
         header('HTTP/1.1 404 Not Found');
