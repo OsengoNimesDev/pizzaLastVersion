@@ -101,6 +101,9 @@ switch($url) {
     //     $page = new Photo;
     //     $titre = "Pizzeria de la plage - Photo";
     // break;
+case "commande.class.php":
+    print_r($_POST);
+    break;
 
     default : 
         header('HTTP/1.1 404 Not Found');
