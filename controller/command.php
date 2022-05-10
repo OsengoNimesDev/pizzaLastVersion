@@ -109,12 +109,12 @@ switch($url) {
     // break;
 case "commande.html":
     // print_r($_POST);
-    echo ("je suis là");
     foreach ($_POST as $key => $value) {
         $_SESSION[$key] = intval($value);
+        echo ("je suis là");
     }
     $page = new Commande();
-    print_r($_SESSION);
+    print_r($_POST);
     break;
     case "panier.html":
         $page= new Panier();
