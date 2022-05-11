@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mer. 04 mai 2022 à 14:33
+-- Généré le : mer. 11 mai 2022 à 12:44
 -- Version du serveur : 5.7.36
 -- Version de PHP : 8.0.13
 
@@ -73,6 +73,10 @@ CREATE TABLE IF NOT EXISTS `com_cli` (
 INSERT INTO `com_cli` (`ref_cli`, `nom`, `prenom`, `adresse`, `email`, `password`, `tel`) VALUES
 (1, 'Martin', 'Jean', '10 rue du panier, 75000 PARIS', 'j.martin@gmail.com', '', '0606060606'),
 (6, 'Test', 'Test', 'Test', 'Test@gmail.com', '$2y$10$aOvDZ44JEkhe4w49udfFv.pPYdXbXruN7ltiNFKrS2/wFs1dGr/7K', '0606060606'),
+(17, 'Alves', 'Alexandre', '2 Avenue Du Grand Mail', 'a.alves1337@gmail.com', '$2y$10$AdmIoHip13vIYDnk9Lb4weD8LnDAANWTPrGdkajmCY0Vsa8CEkkJm', '+33782324340'),
+(19, 'Alves', 'Alexandre', '2 Avenue Du Grand Mail', 'a.alves13337@gmail.com', '$2y$10$zPe8ZvnjdrEmyz95eEhVpe07.cQ15Ic7UvfRB3HTSQJ5XxHdjGodq', '+33782324340'),
+(20, 'Alves', 'Alexandre', '2 Avenue Du Grand Mail', 'a.alves125337@gmail.com', '$2y$10$C1tHm/gStP4Jley0uBQQTetcc2XS7Li3Wo99mNUn3O2lJsFyDr9Am', '+33782324340'),
+(21, 'Alves', 'Alexandre', '2 Avenue Du Grand Mail', 'a.alves13sdqsd37@gmail.com', '$2y$10$SngUPWBmJg0BfNi1KNcuv.KbCHD.zU8ZvyYaoNVpHS00bx9bGFjra', '+33782324340'),
 (22, 'sqdqsd', 'sdqs', 'sdqdqs', 'Test25@gmail.com', '$2y$10$nfUlZ6tXopINK3OQdC70Ae6O/zYL2CZRg/lLpVmhwYltgs9oIWiXS', '0606060606');
 
 -- --------------------------------------------------------
@@ -92,13 +96,15 @@ CREATE TABLE IF NOT EXISTS `constituee` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `constituee_2`
+-- Structure de la table `ligne_commande`
 --
 
-DROP TABLE IF EXISTS `constituee_2`;
-CREATE TABLE IF NOT EXISTS `constituee_2` (
+DROP TABLE IF EXISTS `ligne_commande`;
+CREATE TABLE IF NOT EXISTS `ligne_commande` (
   `id` int(11) NOT NULL,
   `num_com` int(11) NOT NULL,
+  `taille` int(11) NOT NULL COMMENT '0 pour part, 1 pour petite, 2 pour grande',
+  `quantite` int(11) NOT NULL,
   PRIMARY KEY (`id`,`num_com`),
   KEY `num_com` (`num_com`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -186,11 +192,11 @@ ALTER TABLE `constituee`
   ADD CONSTRAINT `constituee_ibfk_2` FOREIGN KEY (`num_com`) REFERENCES `commandespaiements` (`num_com`);
 
 --
--- Contraintes pour la table `constituee_2`
+-- Contraintes pour la table `ligne_commande`
 --
-ALTER TABLE `constituee_2`
-  ADD CONSTRAINT `constituee_2_ibfk_1` FOREIGN KEY (`id`) REFERENCES `pizza` (`id`),
-  ADD CONSTRAINT `constituee_2_ibfk_2` FOREIGN KEY (`num_com`) REFERENCES `commandespaiements` (`num_com`);
+ALTER TABLE `ligne_commande`
+  ADD CONSTRAINT `ligne_commande_ibfk_1` FOREIGN KEY (`id`) REFERENCES `pizza` (`id`),
+  ADD CONSTRAINT `ligne_commande_ibfk_2` FOREIGN KEY (`num_com`) REFERENCES `commandespaiements` (`num_com`);
 
 --
 -- Contraintes pour la table `list_ing`
