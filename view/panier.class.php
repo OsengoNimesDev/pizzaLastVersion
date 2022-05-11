@@ -21,23 +21,25 @@ class Panier{
         <h1>Panier</h1>
         <div class='formulaire'>
         <form action='#' method='POST'>
-
+";
+if(isset($_SESSION["ref_cli"])) {
+    echo "
             <label for='mail'>Email : </label>
-            <input type='email' name='mail' placeholder='Entrez votre email' value='$email' /><br>
+            <span  placeholder='Votre email'>$email</span><br>
 
             <label for='nom'>Nom : </label>
-            <input type='text' name='nom' placeholder='Entrez votre nom' value='$nomClient'/><br>
+            <span  placeholder='placeholder='Votre nom'>$nomClient</span><br>
 
             <label for='prenom'>Prénom : </label>
-            <input type='text' name='prenom' placeholder='Entrez votre prénom' value='$prenom' /><br>
-
+            <span  placeholder='placeholder='Votre nom'>$prenom</span><br>    
+         
             <label for='adresse'>Adresse : </label>
-            <input type='text' name='adresse' placeholder='Entrez votre adresse' value='$adresse' /><br>
+            <span  placeholder='placeholder='Votre nom'>$adresse</span><br>  
 
             <label for='tel'>Téléphone : </label>
-            <input type='text' name='tel' placeholder='Entrez votre numéro de téléphone' value='$tel'  /><br>
-    ";
-
+            <span  placeholder='placeholder='Votre nom'>$tel</span><br> 
+     ";
+}
     if(isset($_SESSION['panier'])) {
           $totalGeneral=0;
           foreach($_SESSION['panier'] as $cle => $valeur) {
@@ -46,19 +48,21 @@ class Panier{
               $id=$tabcom[1];
               $taille=$tabcom[2];
               $pizza=Pizza::getById($id);
-              echo $valeur . " ";
+              echo "<span  placeholder='placeholder='nombre'>$valeur</span> ";
               
               switch($taille) {
                   case 'p':
-                      echo "part(s) ";
+                    echo "<span  placeholder='placeholder='parts'>parts</span> ";
                       $prixUne=$pizza->getPrixPart();
                       break;
                   case 'g':
-                      echo "grande(s) ";
+                    echo "<span  placeholder='placeholder='grande'>grande</span> ";
+ 
                       $prixUne=$pizza->getPrixGrande();
                       break;
                   case 'm':
-                      echo "petite(s) ";
+                    echo "<span  placeholder='placeholder='petite'>petite</span> ";
+ 
                       $prixUne=$pizza->getPrixPetite();
                       break;
               }
