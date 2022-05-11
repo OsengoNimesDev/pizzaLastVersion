@@ -11,9 +11,15 @@ require '../view/photo.class.php';
 require '../view/historique.class.php';
 require '../view/formulaire.class.php';
 require '../view/inscription.class.php';
+require '../view/panier.class.php';
+require '../view/commande.class.php';
+
 
 
 $url = filter_input(INPUT_GET, "url"); // on récupère ce qu'il y a dans l'url saisie par l'utilisateur
+
+
+var_dump($_SESSION);
 
 switch($url) {
     case "index.html" :
@@ -38,9 +44,13 @@ switch($url) {
         $password=filter_input(INPUT_POST, 'password');
         $client = Client::connexion($email,$password);
         // var_dump($client);
-        if( $client){
-                $ref_cli= $client->getID();
+        if($client){
+                $ref_cli=$client->getID();
+                $nom=$client->getNom();
+                $prenom=$client->getPrenom();
                 $_SESSION["ref_cli"]=$ref_cli;
+                $_SESSION["nom"]=$nom;
+                $_SESSION["prenom"]=$prenom;
                 header('Location: /index.html');
             //echo "on a trouvé";
         }else{
@@ -85,15 +95,17 @@ switch($url) {
         break;
 
     case "histcommand.html" :
+        if ($_SESSION) {
         $histList = Historique::list();
         $page = new Historique($histList);
         $titre = "Pizzeria de la plage - Historique de commande";
+        }
+        else {header('Location: /index.html'); }
     break;
 
-    // case "photo.html" :
-    //     $page = new Photo;
-    //     $titre = "Pizzeria de la plage - Photo";
-    // break;
+    case "panier.html":
+        $page= new Panier();
+        break;
 
     default : 
         header('HTTP/1.1 404 Not Found');
