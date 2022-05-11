@@ -90,4 +90,14 @@ class Pizza extends Database
         $list = $sth->fetchAll(PDO::FETCH_CLASS, "Pizza");
         return $list;
     }
+    public static function getByID(int $id)
+    {
+        $dbh = new Database();
+        $sql = "select * from pizza where id=:id";
+        $sth = $dbh->prepare($sql);
+        $sth->bindParam(":id", $id);
+        $sth->execute();
+        $pizza = $sth->fetchObject("Pizza");
+        return $pizza;
+    }
 }
