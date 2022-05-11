@@ -24,6 +24,12 @@
         public function getPrenom(){
             return $this->prenom;
         }
+        public function getAdresse(){
+            return $this->adresse;
+        }
+		public function getTel(){
+            return $this->tel;
+        }
 		public function setEmail($newEmail){
 			if($newEmail != "")
 				$this->email = $newEmail;
@@ -38,6 +44,15 @@
             $this->password = password_hash($newPassword);
         }
 		
+		public static function getClient($id) {					
+			$pdo = new Database();
+		    $requete = $pdo->prepare("SELECT * FROM com_cli WHERE ref_cli = :id");
+			$requete->bindParam(":id", $id);
+		    $requete->execute();
+			$client = $requete->fetchObject("Client");
+			return $client;
+		}
+
 		public static function connexion($email, $motDePasse) {					
 			$pdo = new Database();
 		    $requete = $pdo->prepare("SELECT * FROM com_cli WHERE email= :email");
