@@ -1,28 +1,21 @@
-var tab=[];
 function ajoutPanier(id){
-let idInput= document.getElementById(id);
-
-
-tab[id] = idInput.value;
-
-    
-
-  
-$.ajax({
-    url: 'commande.html',
-    dataType: 'json',
-    type: 'post',
-    data: tab,
-    processData: true,
-    asynch : true,
-    success: function( data ){
-      for(element in data) {
-        console.log(element);
-        console.log(data.element);
-    }
-    },
-    error: function( errorThrown ){
-        // console.log( errorThrown );
-    }
-  });
+	const idInput= document.getElementById(id).value;
+      var tab = Array();
+	
+	$.ajax(
+	{
+    		url: 'commande.php',
+    		dataType: 'json',
+    		type: 'post',
+    		data: {type: 'panier', id: id, val: idInput},
+    		processData: true,
+    		asynch : true,
+    		success: function( data )
+		{
+			console.log( data );
+    		},
+    		error: function( errorThrown ){
+        		console.log( errorThrown );
+    		}
+  	});
 }

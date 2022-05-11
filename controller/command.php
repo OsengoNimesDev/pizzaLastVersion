@@ -103,19 +103,6 @@ switch($url) {
         else {header('Location: /index.html'); }
     break;
 
-    // case "photo.html" :
-    //     $page = new Photo;
-    //     $titre = "Pizzeria de la plage - Photo";
-    // break;
-case "commande.html":
-    // print_r($_POST);
-    foreach ($_POST as $key => $value) {
-        $_SESSION[$key] = intval($value);
-        echo ("je suis là");
-    }
-    $page = new Commande();
-    print_r($_POST);
-    break;
     case "panier.html":
         $page= new Panier();
         break;
