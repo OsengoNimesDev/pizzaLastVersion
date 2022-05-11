@@ -6,4 +6,3 @@
     $_SESSION[$type][$id]=$val;
 
     echo json_encode($_SESSION);
-
