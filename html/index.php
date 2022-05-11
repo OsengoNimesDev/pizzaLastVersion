@@ -1,6 +1,6 @@
 <?php require '../controller/command.php'; ?>
 <!doctype html>
-<html lang="fr">
+<html lang="fr"> 
 <head>
 	<meta charset="UTF-8">
     <script
