@@ -17,7 +17,7 @@
 <body>
 <header>
         <nav class="menus1">		
-            <label class="tel"><a href="tel:+33600000000"> 0600000000</a></label>
+            <label  class="tel"><a href="tel:+33600000000"> 0600000000</a></label>
             <ul>
                 <li><a href="./panier.html">Panier</a></li>
                 <li><a href="./carte.html">Carte</a></li>
