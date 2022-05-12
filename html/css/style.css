@@ -226,6 +226,11 @@ ul{
   width:80vw; 
   margin:0 auto;
   padding-bottom:20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
 }
 
 .histCommand > div {
@@ -244,6 +249,7 @@ ul{
   background-color: rgb(0, 128, 0);
   padding: 2px;
   margin:0 20px;
+  width: 80vw;
 }
 
 .histCommand > div > div, .listCommand > div > div {
@@ -259,6 +265,9 @@ ul{
   text-align: right;
 }
 
+.listCommand input {
+
+}
 /* Responsive design */
 
 @media screen and (min-width: 1300px) {
