@@ -96,7 +96,7 @@ switch($url) {
 
     case "histcommand.html" :
         if ($_SESSION) {
-        $histList = Historique::list();
+        $histList = CommandeDB::list();
         $page = new Historique($histList);
         $titre = "Pizzeria de la plage - Historique de commande";
         }

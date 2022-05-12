@@ -20,22 +20,20 @@ class Panier{
                     $taille=$tabcom[2];
 
                         switch($taille){
-                             case "p":
+                            case "p":
                                 $taillePizza = "part";
-                                 $prixUnitaire = $pizza->getPrixPart();
+                                $prixUnitaire = $pizza->getPrixPart();
                                 break;
 
                              case "m":
                                 $taillePizza = "petite";
-                                    $prixUnitaire = $pizza->getPrixPetite();
-
-                                    break;
+                                $prixUnitaire = $pizza->getPrixPetite();
+                                break;
 
                              case "g":
                                 $taillePizza = "grande";
-                                        $prixUnitaire = $pizza-> getPrixGrande();
-                                        break;
-
+                                $prixUnitaire = $pizza-> getPrixGrande();
+                                break;
                         }
 
                         $prixPizza=number_format(($prixUnitaire*$valeur)/100,2);

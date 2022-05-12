@@ -1,5 +1,5 @@
 <?php
-   class Historique extends HistCommande {
+   class Historique {
       private Array $liste;
       public function __construct(Array $liste) {
          $this->liste = $liste;
