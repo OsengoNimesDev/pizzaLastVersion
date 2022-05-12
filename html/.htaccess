@@ -1,5 +1,7 @@
 RewriteEngine On
 RewriteCond %{REQUEST_URI} !index.php
 RewriteCond %{REQUEST_URI} !css/.*
+RewriteCond %{REQUEST_URI} !js/.*
 RewriteCond %{REQUEST_URI} !img/.*
+RewriteCond %{REQUEST_URI} !commande.php
 RewriteRule (.*) index.php?url=$1

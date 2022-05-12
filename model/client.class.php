@@ -3,15 +3,17 @@
 <?php
 	class Client extends Database { // voir si OK de faire 1 extends de Database
         // Les propriétés
-		private int $idClient=0;
+		private int $ref_cli=0;
 		private string $email=""; // DEVRA etre UNIQUE correspond à l'ID lors du login
-		private string $motDePasse=""; // voir https://www.php.net/manual/fr/faq.passwords.php
+		private string $password=""; // voir https://www.php.net/manual/fr/faq.passwords.php
 		private string $nom="";
 		private string $prenom="";
+    private string $adresse="";
+    private string $tel="";
         
 		// Les méthodes
         public function getID(){
-            return $this->idClient;
+            return $this->ref_cli;
         }
 		public function getEmail(){
 			return $this->email;
@@ -33,41 +35,67 @@
             $this->prenom = $newPrenom;
         }
         public function setMotDePasse($newPassword){
-            $this->motDePasse = password_hash($newPassword);
         }
 		
 		public static function connexion($email, $motDePasse) {					
 			$pdo = new Database();
-		    $requete = $pdo->prepare("SELECT * FROM compteClient WHERE email= :email");
+
+		    $requete = $pdo->prepare("SELECT * FROM com_cli WHERE email= :email");
 			$requete->bindParam(":email", $email);
 		    $requete->execute();
+			$client = $requete->fetchObject("Client");
+			if ($client) {
+				if (!$client->verifMotDePasse($motDePasse)) {
+					return false;
+				}
+			}
 		    // $resultat = $requete->fetchAll(PDO::FETCH_CLASS, "Client");
 		    // $resultat = $requete->fetchObject("Client");
-			return $requete->fetchObject("Client");
+			return $client;
+		}
+
+		public static function inscription($email, $motDePasse, $nom, $prenom, $adresse, $tel) {
+			$password = password_hash($motDePasse, PASSWORD_DEFAULT);					
+			$pdo = new Database();
+		    $requete = $pdo->prepare("INSERT INTO com_cli (nom, prenom, adresse, email, password, tel) VALUES (:nom, :prenom, :adresse, :email, :password, :tel)");
+			$requete->bindParam(":nom", $nom);
+			$requete->bindParam(":prenom", $prenom);
+			$requete->bindParam(":adresse", $adresse);
+			$requete->bindParam(":password", $password);
+			$requete->bindParam(":tel", $tel);
+			$requete->bindParam(":email", $email);
+			try {
+				$requete->execute();
+				return $pdo->lastInsertId();
+			} catch (Exception $e) {
+				return false;
+			}
+		    // $resultat = $requete->fetchAll(PDO::FETCH_CLASS, "Client");
+		    // $resultat = $requete->fetchObject("Client");
+			// return $requete->fetchObject("Client");
 		}
 
 		public function majModification($email, $motDePasse) : Array {					
 			$requete;
 			$resultat;
-		    $requete = $this->prepare("SELECT * FROM compteClient WHERE email= :email");
+		    $requete = $this->prepare("SELECT * FROM com_cli WHERE email= :email");
 			$requete->bindParam(":email", $email);
 		    $requete->execute();
 		    $resultat = $requete->fetchAll(PDO::FETCH_CLASS, "Client");
 			$mdp = password_hash($motDePasse);
 			$requete->bindParam(":nom", $nom);
 			$requete->bindParam(":prenom", $prenom);
-			$requete->bindParam(":motDePasse", $mdp);
+			$requete->bindParam(":password", $mdp);
 		    if (sizeof($resultat)>0) 
 			{
-				$requete = $this->prepare("UPDATE compteClient SET nom=:nom, prenom=:prenom, motDePasse=:motDePasse");
+				$requete = $this->prepare("UPDATE com_cli SET nom=:nom, prenom=:prenom, password=:password");
 			}
 			else {
-				$requete = $this->prepare("INSERT INTO compteClient (nom, prenom, motDePasse) VALUES (:nom, :prenom, :motDePasse)");
+				$requete = $this->prepare("INSERT INTO com_cli (nom, prenom, password) VALUES (:nom, :prenom, :password)");
 			}
 			return [];
 		}
 		private function verifMotDePasse (string $motDePasse){
-			return password_verify($motDePasse, $this->motDePasse);
+			return password_verify($motDePasse, $this->password);
 		}
 	}
-?>
