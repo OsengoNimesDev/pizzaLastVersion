@@ -38,6 +38,10 @@
             $this->password = password_hash($newPassword);
         }
 		
+		/*
+			Tentative de connexion à la base de données,
+			depuis l'adresse email, avec contrôle du mot de passe
+		*/
 		public static function connexion($email, $motDePasse) {					
 			$pdo = new Database();
 		    $requete = $pdo->prepare("SELECT * FROM com_cli WHERE email= :email");
@@ -49,11 +53,13 @@
 					return false;
 				}
 			}
-		    // $resultat = $requete->fetchAll(PDO::FETCH_CLASS, "Client");
-		    // $resultat = $requete->fetchObject("Client");
 			return $client;
 		}
 
+		/*
+			Tentative d'inscription d'un nouveau client à la base de données
+			Un échec sera détecté si l'adresse email existe déjà
+		*/
 		public static function inscription($email, $motDePasse, $nom, $prenom, $adresse, $tel) {
 			$password = password_hash($motDePasse, PASSWORD_DEFAULT);					
 			$pdo = new Database();
@@ -70,11 +76,14 @@
 			} catch (Exception $e) {
 				return false;
 			}
-		    // $resultat = $requete->fetchAll(PDO::FETCH_CLASS, "Client");
-		    // $resultat = $requete->fetchObject("Client");
-			// return $requete->fetchObject("Client");
 		}
 
+		/*
+			Modification de l'identification par email et mot de passe
+			pour le client.
+			Si l'adresse email n'existe pas, un nouveau client est créé 
+			mais avec la majeure partie des champs vides
+		*/
 		public function majModification($email, $motDePasse) : Array {					
 			$requete;
 			$resultat;
@@ -95,7 +104,26 @@
 			}
 			return [];
 		}
+		/*
+			Contrôle du mot de passe saisi par comparaison avec celui 
+			qui se trouve encrypté en hash dans la base de données 
+		*/
 		private function verifMotDePasse (string $motDePasse){
 			return password_verify($motDePasse, $this->password);
 		}
+
+		/*
+			Récupération du client depuis son ID
+		*/
+		public static function getById (int $id)
+		{
+			$dbh= new Database();
+			$sql = "select * from com_cli where ref_cli=:id";
+			$sth = $dbh->prepare($sql);
+			$sth->bindParam(":id", $id);
+			$sth->execute();
+			$pizza= $sth->fetchObject("Client");
+			return $pizza;
+		}
+
 	}

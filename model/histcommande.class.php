@@ -22,6 +22,19 @@
         public function getMoy_pai() : string {
             return $this->moy_pai; 
         }
+
+        public function getElements() {
+            $sql = "select lc.*, pizza.*  from commandespaiements
+                    inner join com_cli on commandespaiements.ref_cli = com_cli.ref_cli
+                    inner join ligne_commande on ligne_commande.num_com=cp.num_com
+                    inner join pizza on pizza.id = lc.id
+                    where cp.num_com=:num_com";
+            $sth = $this->prepare($sql);
+            $sth->execute();
+            $sth->bindParam(":num_com", $this->num_com);
+            $list = $sth->fetchAll(PDO::FETCH_CLASS);
+            return $list;
+        }
  
         public static function list() : Array {
             $dbh = new Database();
