@@ -1,5 +1,5 @@
 <?php
-    class HistCommande extends Database {
+    class CommandeDB extends Database {
         private int $num_com=0;
         private string $dateCom="";
         private int $montant=0;
@@ -28,7 +28,7 @@
             $sql = "SELECT num_com, dateCom, montant, moy_pai FROM commandespaiements INNER JOIN com_cli on com_cli.ref_cli = commandespaiements.ref_cli WHERE commandespaiements.ref_cli = $_SESSION[ref_cli] ORDER BY dateCom desc";
             $sth = $dbh->prepare($sql);
             $sth->execute();
-            $list = $sth->fetchAll(PDO::FETCH_CLASS, "HistCommande");
+            $list = $sth->fetchAll(PDO::FETCH_CLASS, "CommandeDB");
             return $list;
         }
     }
