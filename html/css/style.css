@@ -262,9 +262,6 @@ ul{
   text-align: right;
 }
 
-.listCommand input {
-  margin-top: 1rem;
-}
 /* Responsive design */
 
 @media screen and (min-width: 1300px) {
