@@ -19,7 +19,7 @@ require '../view/commande.class.php';
 $url = filter_input(INPUT_GET, "url"); // on récupère ce qu'il y a dans l'url saisie par l'utilisateur
 
 
-var_dump($_SESSION);
+// var_dump($_SESSION);
 
 switch($url) {
     case "index.html" :
