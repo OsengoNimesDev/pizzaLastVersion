@@ -19,20 +19,25 @@ class Panier{
                     $pizza = Pizza::getById($tabcom[1]);
                     $nomPizza = $pizza->getNom();
                     $taille=$tabcom[2];
-
+                    if ($valeur > 1){
+                        $pluriel = "s";
+                        
+                    }else {
+                        $pluriel ="";
+                    }
                         switch($taille){
                             case "p":
-                                $taillePizza = "part";
+                                $taillePizza = "part".$pluriel;
                                 $prixUnitaire = $pizza->getPrixPart();
                                 break;
 
                              case "m":
-                                $taillePizza = "petite";
+                                $taillePizza = "petite".$pluriel;
                                 $prixUnitaire = $pizza->getPrixPetite();
                                 break;
 
                              case "g":
-                                $taillePizza = "grande";
+                                $taillePizza = "grande".$pluriel;
                                 $prixUnitaire = $pizza-> getPrixGrande();
                                 break;
                         }
@@ -55,7 +60,7 @@ class Panier{
                             ";
                 echo '</div>';
                 if (isset($_SESSION['ref_cli'])) {echo '<br><input type="submit" value="Valider la commande">';}
-                else {echo '<br>Vous devez vous inscrire pour valider la commande : <input type="submit" value="S\'inscrire">';}
+                else {echo '<br>Vous devez vous connecter pour valider la commande : <a href="connexion.html">Connexion</a>';}
                 echo '</div>';
         }
     }
