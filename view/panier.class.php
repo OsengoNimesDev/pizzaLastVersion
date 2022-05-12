@@ -47,7 +47,7 @@ class Panier{
                             ";
                 }
                 echo '</div>';
-                if (isset($_SESSION['ref_cli'])) {echo ' <input type="submit" value="Valider la commande">';}
+                if (isset($_SESSION['ref_cli'])) {echo '<br><input type="submit" value="Valider la commande">';}
                 else {echo '<br>Vous devez vous inscrire pour valider la commande : <input type="submit" value="S\'inscrire">';}
                 echo '</div>';
         }
