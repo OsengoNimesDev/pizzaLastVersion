@@ -8,8 +8,8 @@
 		private string $password=""; // voir https://www.php.net/manual/fr/faq.passwords.php
 		private string $nom="";
 		private string $prenom="";
-        private string $adresse="";
-        private string $tel="";
+    private string $adresse="";
+    private string $tel="";
         
 		// Les méthodes
         public function getID(){
@@ -35,11 +35,11 @@
             $this->prenom = $newPrenom;
         }
         public function setMotDePasse($newPassword){
-            $this->password = password_hash($newPassword);
         }
 		
 		public static function connexion($email, $motDePasse) {					
 			$pdo = new Database();
+
 		    $requete = $pdo->prepare("SELECT * FROM com_cli WHERE email= :email");
 			$requete->bindParam(":email", $email);
 		    $requete->execute();
