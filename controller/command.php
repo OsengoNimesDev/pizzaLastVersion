@@ -3,7 +3,7 @@ session_start();
 
 require '../model/db.class.php';
 require '../model/pizza.class.php';
-require '../model/histcommande.class.php';
+require '../model/commande.class.php';
 require '../model/client.class.php';
 require '../view/index.class.php'; 
 require '../view/cartes.class.php'; 
@@ -12,14 +12,8 @@ require '../view/historique.class.php';
 require '../view/formulaire.class.php';
 require '../view/inscription.class.php';
 require '../view/panier.class.php';
-require '../view/commande.class.php';
-
-
 
 $url = filter_input(INPUT_GET, "url"); // on récupère ce qu'il y a dans l'url saisie par l'utilisateur
-
-
-var_dump($_SESSION);
 
 switch($url) {
     case "index.html" :
