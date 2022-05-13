@@ -61,6 +61,7 @@ switch($url) {
             $command->ajouterLigne ($tabcom[1], $taille, $valeur);
         }
         $command->majPrix($somme);
+        unset($_SESSION["panier"]);
         header('Location: /index.html');
         break;
 
