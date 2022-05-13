@@ -33,6 +33,37 @@ switch($url) {
         $titre = "Pizzeria de la plage - Formulaire de connexion";
         break;
 
+    case "validationPanier.html":
+        $command = new CommandeDB($_SESSION['ref_cli']);
+        $somme=0;
+        $prix=0;
+        foreach ($_SESSION['panier'] as $cle => $valeur) {
+            $tabcom=explode("_", $cle);
+            $pizza = Pizza::getById($tabcom[1]);
+            switch($tabcom[2]){
+                case "p":
+                    $taille = 0;
+                    $prixUnitaire = $pizza->getPrixPart();
+                    break;
+
+                 case "m":
+                    $taille = 1;
+                    $prixUnitaire = $pizza->getPrixPetite();
+                    break;
+
+                 case "g":
+                    $taille = 2;
+                    $prixUnitaire = $pizza-> getPrixGrande();
+                    break;
+            }
+            $prix=$prixUnitaire*$valeur;
+            $somme += $prix;
+            $command->ajouterLigne ($tabcom[1], $taille, $valeur);
+        }
+        $command->majPrix($somme);
+        header('Location: /index.html');
+        break;
+
     case "validationConnexion.html":
         $email=filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
         $password=filter_input(INPUT_POST, 'password');

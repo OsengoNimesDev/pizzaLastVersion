@@ -59,7 +59,7 @@ class Panier{
                             <div>$sommeFormatee €</div>
                             ";
                 echo '</div>';
-                if (isset($_SESSION['ref_cli'])) {echo '<br><input type="submit" value="Valider la commande">';}
+                if (isset($_SESSION['ref_cli'])) {echo '<br><a href="validationPanier.html">Valider la commande</a>';}
                 else {echo '<br>Vous devez vous connecter pour valider la commande : <a href="connexion.html">Connexion</a>';}
                 echo '</div>';
         }

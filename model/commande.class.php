@@ -4,27 +4,37 @@
         private string $dateCom="";
         private int $montant=0;
         private string $moy_pai="Au camion";
-        private int $ref_cli=0;
+        private int $ref_cli;
 
-        public function __construct($ref_cli=0) {
+        public function __construct($ref_cli=0, $somme=0) {
             $this->ref_cli = $ref_cli;
             $date = new DateTime();
             $this->dateCom = $date->format('Y-m-d');
-            $requete = $pdo->prepare ("INSERT INTO commandespaiements (dateCom, date_trans, montant, moy_pai) VALUES (:dateCom, :dateCom, :montant, :moy_pai);");
-            $requete->bindParam(":dateCom", $dateCom);
-			$requete->bindParam(":date_trans", $dateCom);
-			$requete->bindParam(":montant", $montant);
-			$requete->bindParam(":moy_pai", $moy_pai);
+
+            parent::__construct();
+            $requete = $this->prepare ("INSERT INTO commandespaiements (dateCom, date_trans, montant, moy_pai, ref_cli) VALUES (:dateCom, :date_trans, :montant, :moy_pai, :ref_cli);");
+            $requete->bindParam(":dateCom", $this->dateCom);
+			$requete->bindParam(":date_trans", $this->dateCom);
+			$requete->bindParam(":montant", $somme);
+			$requete->bindValue(":moy_pai", "Au camion");
+            $requete->bindParam(":ref_cli", $ref_cli);
 			$requete->execute();
-			$this->ref_cli = $this->lastInsertId();
+			$this->num_com = $this->lastInsertId();
 			}
 
-        public function ajoutLigne ($id, $taille, $quantite) {
-            $requete = $pdo->prepare ("INSERT INTO ligne_commande (id, num_com, taille, quantite) VALUES (:id, :num_com, :taille, :quantite);");
+        public function ajouterLigne ($id, $taille, $quantite) {
+            $requete = $this->prepare ("INSERT INTO ligne_commande (id, num_com, taille, quantite) VALUES (:id, :num_com, :taille, :quantite);");
             $requete->bindParam(":id", $id);
             $requete->bindParam(":num_com", $this->num_com);
 			$requete->bindParam(":taille", $taille);
 			$requete->bindParam(":quantite", $quantite);
+            $requete->execute();
+        }
+
+        public function majPrix($prix) {
+            $requete = $this->prepare ("UPDATE commandespaiements SET montant=:montant WHERE num_com=:num_com;");
+            $requete->bindParam(":montant", $prix);
+            $requete->bindParam(":num_com", $this->num_com);
             $requete->execute();
         }
 
