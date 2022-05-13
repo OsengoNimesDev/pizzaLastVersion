@@ -51,7 +51,10 @@ switch($url) {
                 $_SESSION["ref_cli"]=$ref_cli;
                 $_SESSION["nom"]=$nom;
                 $_SESSION["prenom"]=$prenom;
-                header('Location: /index.html');
+                if (isset($_SESSION['panier'])){
+                    header('Location: /panier.html');
+                } else {
+                    header('Location: /index.html');}
             //echo "on a trouvé";
         }else{
             unset($_SESSION["ref_cli"]);
